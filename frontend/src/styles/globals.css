@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+[data-theme="azure"] {
+  /* Default: Azure Cyber Vibrant Light Theme */
+  --cyber-bg: 244 247 252;
+  --cyber-card: 255 255 255;
+  --cyber-border: 226 232 240;
+  --cyber-accent: 2 132 199;
+  --cyber-red: 225 29 72;
+  --cyber-amber: 217 119 6;
+  --cyber-green: 5 150 105;
+  --cyber-purple: 124 58 237;
+
+  --surface-subtle: 241 245 249;
+  --surface-muted: 226 232 240;
+  --text-primary: 15 23 42;
+  --text-secondary: 71 85 105;
+  --text-muted: 100 116 139;
+
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(226, 232, 240, 0.9);
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #0284c7;
+
+  color-scheme: light;
+}
+
+[data-theme="emerald"] {
+  /* Emerald Matrix Vibrant Light Theme */
+  --cyber-bg: 240 253 244;
+  --cyber-card: 255 255 255;
+  --cyber-border: 187 247 208;
+  --cyber-accent: 13 148 136;
+  --cyber-red: 225 29 72;
+  --cyber-amber: 217 119 6;
+  --cyber-green: 5 150 105;
+  --cyber-purple: 124 58 237;
+
+  --surface-subtle: 236 253 245;
+  --surface-muted: 187 247 208;
+  --text-primary: 6 78 59;
+  --text-secondary: 20 83 45;
+  --text-muted: 74 107 88;
+
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(187, 247, 208, 0.9);
+  --scrollbar-track: #ecfdf5;
+  --scrollbar-thumb: #a7f3d0;
+  --scrollbar-thumb-hover: #059669;
+
+  color-scheme: light;
+}
+
+[data-theme="sunset"] {
+  /* Sunset Flare Vibrant Light Theme */
+  --cyber-bg: 255 247 237;
+  --cyber-card: 255 255 255;
+  --cyber-border: 254 215 170;
+  --cyber-accent: 234 88 12;
+  --cyber-red: 225 29 72;
+  --cyber-amber: 217 119 6;
+  --cyber-green: 5 150 105;
+  --cyber-purple: 147 51 234;
+
+  --surface-subtle: 255 241 230;
+  --surface-muted: 254 215 170;
+  --text-primary: 67 20 7;
+  --text-secondary: 124 45 18;
+  --text-muted: 154 83 57;
+
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(254, 215, 170, 0.9);
+  --scrollbar-track: #fff1e6;
+  --scrollbar-thumb: #fdba74;
+  --scrollbar-thumb-hover: #ea580c;
+
+  color-scheme: light;
+}
+
+[data-theme="violet"] {
+  /* Neon Violet Vibrant Light Theme */
+  --cyber-bg: 250 245 255;
+  --cyber-card: 255 255 255;
+  --cyber-border: 233 213 255;
+  --cyber-accent: 147 51 234;
+  --cyber-red: 225 29 72;
+  --cyber-amber: 217 119 6;
+  --cyber-green: 5 150 105;
+  --cyber-purple: 126 34 206;
+
+  --surface-subtle: 245 235 255;
+  --surface-muted: 233 213 255;
+  --text-primary: 59 7 100;
+  --text-secondary: 88 28 135;
+  --text-muted: 126 82 160;
+
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(233, 213, 255, 0.9);
+  --scrollbar-track: #f5ebff;
+  --scrollbar-thumb: #d8b4fe;
+  --scrollbar-thumb-hover: #9333ea;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  /* Dark Cyber Theme Option */
+  --cyber-bg: 10 13 20;
+  --cyber-card: 18 24 36;
+  --cyber-border: 30 41 59;
+  --cyber-accent: 0 240 255;
+  --cyber-red: 255 0 85;
+  --cyber-amber: 255 170 0;
+  --cyber-green: 0 255 136;
+  --cyber-purple: 157 78 221;
+
+  --surface-subtle: 14 19 32;
+  --surface-muted: 30 41 59;
+  --text-primary: 248 250 252;
+  --text-secondary: 203 213 225;
+  --text-muted: 148 163 184;
+
+  --glass-bg: rgba(18, 24, 36, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --scrollbar-track: #0e1320;
+  --scrollbar-thumb: #1e293b;
+  --scrollbar-thumb-hover: #00f0ff;
+
+  color-scheme: dark;
+}
+
+body {
+  color: rgb(var(--text-primary));
+  background: rgb(var(--cyber-bg));
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Glassmorphism elements */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Cyber mesh ambient background */
+.cyber-bg-mesh {
+  background-image: 
+    radial-gradient(at 10% 20%, rgb(var(--cyber-accent) / 0.08) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgb(var(--cyber-purple) / 0.06) 0px, transparent 50%);
+}
+
+.cyber-grid-pattern {
+  background-size: 3rem 3rem;
+  background-image: 
+    linear-gradient(to right, rgb(var(--cyber-border) / 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--cyber-border) / 0.4) 1px, transparent 1px);
+}
