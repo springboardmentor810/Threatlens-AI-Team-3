@@ -5,7 +5,8 @@ import time
 import hashlib
 import re
 import urllib.parse
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
+import socket
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -49,6 +50,15 @@ UPLOADED_SAMPLES_STORE = {
 SAMPLE_ID_COUNTER = 10
 
 class ThreatLensRequestHandler(BaseHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
+
+    def address_string(self):
+        # Override to prevent slow synchronous reverse DNS lookups on Windows
+        return self.client_address[0]
+
+    def log_message(self, format, *args):
+        # High speed logger without blocking
+        sys.stdout.write(f"[{time.strftime('%H:%M:%S')}] {args[0]} {args[1]}\n")
     def _send_json(self, data, status=200):
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
@@ -456,8 +466,8 @@ class ThreatLensRequestHandler(BaseHTTPRequestHandler):
 
 def run_server():
     server_address = ('', PORT)
-    httpd = HTTPServer(server_address, ThreatLensRequestHandler)
-    print(f"[*] ThreatLens AI Dynamic Standalone Server active on http://127.0.0.1:{PORT}")
+    httpd = ThreadingHTTPServer(server_address, ThreatLensRequestHandler)
+    print(f"[*] ThreatLens AI Dynamic Standalone Server active on http://127.0.0.1:{PORT} (Multi-Threaded)")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:

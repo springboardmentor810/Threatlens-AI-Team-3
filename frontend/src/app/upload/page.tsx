@@ -256,7 +256,7 @@ export default function UploadPage() {
         });
         setStep('done');
         setUploading(false);
-      }, 1200);
+      }, 150);
     } finally {
       setUploading(false);
     }

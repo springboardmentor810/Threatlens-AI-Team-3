@@ -112,7 +112,7 @@ export default function AlertsPage() {
         }
       }));
       setTriagingAlertId(null);
-    }, 1200);
+    }, 200);
   };
 
   const handleAudioAnnouncement = () => {
