@@ -1,4 +1,4 @@
-# ThreatLens AI - Backend Service (Review 1 / Milestone 1)
+# ThreatLens AI - Backend Service 
 
 Clean, modularized FastAPI backend service for **User Authentication & Role-Based Access** and **Suspicious File Upload & Static Analysis**.
 
@@ -29,7 +29,7 @@ backend/
 
 ---
 
-## Core Features (Review 1 Scope)
+## Core Features 
 
 ### 1. User Authentication & Role Management
 - **Role-Based Access**: Supports roles (`Security Analyst`, `SOC Team Member`, `Administrator`, `Researcher`).
@@ -50,22 +50,7 @@ backend/
 
 ---
 
-## Quick Start Guide
 
-1. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Run Server**:
-   ```bash
-   uvicorn app.main:app --reload --port 8000
-   ```
-
-3. **Interactive API Documentation**:
-   Open [http://localhost:8000/docs](http://localhost:8000/docs) in your browser.
-
-4. **Run Backend Tests**:
    ```bash
    python test_backend.py
    ```
