@@ -1,6 +1,6 @@
 from pathlib import Path
 
-RULE_DIR = Path("yara_rules/yara")
+RULE_DIR = Path(__file__).resolve().parent / "yara"
 
 RULE_FILES = sorted(
     str(file)
