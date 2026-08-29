@@ -5,7 +5,11 @@ from pathlib import Path
 
 class Predictor:
     def __init__(self):
-        model_path = Path(__file__).resolve().parent.parent / "model" / "lightgbm_model_v1.0.pkl"
+        model_path = (
+            Path(__file__).resolve().parent.parent
+            / "model"
+            / "lightgbm_model_final.pkl"
+        )
         self.model = joblib.load(model_path)
 
     def predict(self, feature_vector):
