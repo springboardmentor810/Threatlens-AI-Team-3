@@ -1,0 +1,13 @@
+D:\THREATLENS\Threatlens-AI-Team-3-Srija_Mukherjee\PROJECTSSR\TEAM-3\Desktop\ember2018\threatlens-ai\venv\Lib\site-packages\sklearn\base.py:525: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.1.3 when using version 1.9.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Started server process [16780]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+YARA scanner unavailable: No module named 'ml_engine'
+WARNING: EMBER feature version 2 were computed using lief version 0.9.0-
+WARNING:   lief version 1.0.0-d05b3499b found instead. There may be slight inconsistencies
+WARNING:   in the feature calculations.
+EMBER ML engine initialized successfully.
+INFO:     127.0.0.1:63303 - "GET /docs HTTP/1.1" 200 OK
