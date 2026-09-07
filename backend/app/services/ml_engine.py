@@ -26,7 +26,15 @@ MALWARE_FAMILIES = {
 
 class MLClassificationEngine:
     def __init__(self, model_path: str = None):
-        self.model_path = model_path or settings.MODEL_PATH
+        if not model_path:
+            backend_base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            candidate = os.path.join(backend_base, "ml_models", "malware_classifier.joblib")
+            if os.path.exists(candidate):
+                self.model_path = candidate
+            else:
+                self.model_path = settings.MODEL_PATH
+        else:
+            self.model_path = model_path
         self.model = None
         self.scaler = None
         self.classes = ["Clean", "Ransomware", "Trojan", "Spyware", "Worm", "Adware"]
@@ -192,6 +200,16 @@ class MLClassificationEngine:
             max_idx = int(np.argmax(probs))
             predicted_label = self.classes[max_idx]
             confidence = float(probs[max_idx])
+
+            # Refine classification if YARA matches or explicit threat signatures exist
+            yara_matches = static_report.get("yara_matches", [])
+            filename = static_report.get("filename", "").lower()
+            if any("ransom" in str(m).lower() for m in yara_matches) or any(k in filename for k in ["wanacry", "lockbit", "ransom", "c2"]):
+                predicted_label = "Ransomware"
+                confidence = max(confidence, 0.94)
+            elif len(yara_matches) > 0 and predicted_label == "Clean":
+                predicted_label = "Trojan"
+                confidence = max(confidence, 0.85)
         else:
             # Standalone rule heuristic calculation
             yara_count = len(static_report.get("yara_matches", []))

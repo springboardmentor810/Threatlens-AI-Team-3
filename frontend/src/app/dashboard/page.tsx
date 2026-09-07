@@ -8,6 +8,7 @@ import RiskGauge from '../../components/RiskGauge';
 import ThreatChart from '../../components/ThreatChart';
 import YaraBadges from '../../components/YaraBadges';
 import RealtimeThreatRadar from '../../components/RealtimeThreatRadar';
+import LiveTelemetryTicker from '../../components/LiveTelemetryTicker';
 import Link from 'next/link';
 import {
   ShieldAlert,
@@ -24,7 +25,9 @@ import {
   Globe,
   Binary,
   Zap,
-  Radio
+  Radio,
+  Target,
+  Cpu
 } from 'lucide-react';
 import { getDashboardOverview } from '../../lib/api';
 

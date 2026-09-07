@@ -11,6 +11,8 @@ from typing import Dict, Any, List, Optional
 import urllib.parse
 import urllib.request
 
+socket.setdefaulttimeout(3.0)
+
 def compute_hashes(data: bytes) -> Dict[str, str]:
     return {
         "md5": hashlib.md5(data).hexdigest(),

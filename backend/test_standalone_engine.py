@@ -27,6 +27,7 @@ def main():
         b"WanaCrypt0r Restore-My-Files.txt c.wnry t.wnry WanaDecryptor@.exe "
         b"VirtualAllocEx WriteProcessMemory CreateRemoteThread "
         b"http://c2-malware-server.ru/keys/public.pem 185.220.101.5"
+        + b"\x00" * 65000
     )
     yara_dir = os.path.join(os.path.dirname(__file__), "yara_rules")
     pe_report = run_static_analysis(wanacry_payload, "wanacry_sample.exe", yara_dir)

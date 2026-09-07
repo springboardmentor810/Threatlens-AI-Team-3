@@ -23,6 +23,7 @@ const navigationItems = [
   { name: 'AI SOC Copilot', href: '/copilot', icon: Bot, badge: 'AI Suite' },
   { name: 'Multi-Modal Scan', href: '/upload', icon: UploadCloud, badge: '5 Formats' },
   { name: 'Malware Samples', href: '/samples', icon: FileCode2 },
+  { name: 'Sandbox & ATT&CK', href: '/samples/1', icon: Cpu, badge: 'Sandbox' },
   { name: 'SOC Alert Queue', href: '/alerts', icon: ShieldAlert },
   { name: 'Threat Intel & Watchlist', href: '/intel', icon: Radio },
   { name: 'Reports & Analytics', href: '/reports', icon: BarChart3 },

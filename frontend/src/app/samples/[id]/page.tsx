@@ -25,31 +25,44 @@ import {
   FileCode,
   Volume2,
   Copy,
-  Check
+  Check,
+  Target
 } from 'lucide-react';
+import ProcessTreeSimulator from '../../../components/ProcessTreeSimulator';
+import MitreAttackMatrix from '../../../components/MitreAttackMatrix';
+import HexDisassemblerInspector from '../../../components/HexDisassemblerInspector';
+import PlaybookExporterModal from '../../../components/PlaybookExporterModal';
 import {
   getSampleDetails,
   generateAIRemediation,
   generateAIYaraSigma,
   decompileAndExplainCode,
-  getAIVoiceBriefing
+  getAIVoiceBriefing,
+  getSandboxBehavior,
+  getMitreAttackMatrix,
+  getHexInspector
 } from '../../../lib/api';
 
-type TabView = 'static' | 'decompiler' | 'remediation' | 'yara' | 'virustotal';
+type TabView = 'static' | 'sandbox' | 'mitre' | 'hex' | 'decompiler' | 'remediation' | 'yara' | 'virustotal';
 
 export default function SampleDetailPage() {
   const params = useParams();
   const sampleId = params?.id ? Number(params.id) : 1;
 
   const [sample, setSample] = useState<any>(null);
-  const [activeTab, setActiveTab] = useState<TabView>('static');
+  const [activeTab, setActiveTab] = useState<TabView>('sandbox');
   const [loading, setLoading] = useState(true);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [isPlayingVoice, setIsPlayingVoice] = useState(false);
+  const [exportModalOpen, setExportModalOpen] = useState(false);
 
   const [remediation, setRemediation] = useState<any>(null);
   const [yaraSigma, setYaraSigma] = useState<any>(null);
   const [decompiler, setDecompiler] = useState<any>(null);
+
+  const [sandboxData, setSandboxData] = useState<any>(null);
+  const [mitreData, setMitreData] = useState<any>(null);
+  const [hexData, setHexData] = useState<any>(null);
 
   useEffect(() => {
     async function load() {
@@ -68,6 +81,9 @@ export default function SampleDetailPage() {
         generateAIRemediation(sampleCtx).then(setRemediation).catch(() => {});
         generateAIYaraSigma(sampleCtx).then(setYaraSigma).catch(() => {});
         decompileAndExplainCode('', sampleCtx).then(setDecompiler).catch(() => {});
+        getSandboxBehavior(sampleId).then(setSandboxData).catch(() => {});
+        getMitreAttackMatrix(sampleId).then(setMitreData).catch(() => {});
+        getHexInspector(sampleId).then(setHexData).catch(() => {});
       } catch {
         const fallbackData = {
           id: sampleId,
@@ -115,6 +131,9 @@ export default function SampleDetailPage() {
         generateAIRemediation(sampleCtx).then(setRemediation).catch(() => {});
         generateAIYaraSigma(sampleCtx).then(setYaraSigma).catch(() => {});
         decompileAndExplainCode('', sampleCtx).then(setDecompiler).catch(() => {});
+        getSandboxBehavior(sampleId).then(setSandboxData).catch(() => {});
+        getMitreAttackMatrix(sampleId).then(setMitreData).catch(() => {});
+        getHexInspector(sampleId).then(setHexData).catch(() => {});
       } finally {
         setLoading(false);
       }
@@ -181,6 +200,14 @@ export default function SampleDetailPage() {
             </Link>
 
             <div className="flex items-center space-x-3">
+              <button
+                onClick={() => setExportModalOpen(true)}
+                className="px-3.5 py-2 rounded-xl bg-cyber-accent hover:opacity-90 text-white text-xs font-mono font-bold flex items-center space-x-2 transition-all shadow-md"
+              >
+                <Download className="w-4 h-4" />
+                <span>Export 1-Click Playbooks</span>
+              </button>
+
               <button
                 onClick={handleVoiceBriefing}
                 className="px-3.5 py-2 rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-700 hover:bg-purple-500/25 text-xs font-mono font-bold flex items-center space-x-2 transition-all shadow-sm"
@@ -253,7 +280,10 @@ export default function SampleDetailPage() {
           {/* Navigation Tabs */}
           <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-cyber-card border border-cyber-border shadow-sm">
             {[
-              { id: 'static', label: 'Static Header & PE Telemetry', icon: FileCode2 },
+              { id: 'sandbox', label: 'Dynamic Process Sandbox', icon: Cpu },
+              { id: 'mitre', label: 'MITRE ATT&CK Matrix', icon: Target },
+              { id: 'hex', label: 'Hex Dump & Assembly', icon: Hash },
+              { id: 'static', label: 'Static Header Telemetry', icon: FileCode2 },
               { id: 'decompiler', label: 'AI Decompiled Pseudocode', icon: Code2 },
               { id: 'remediation', label: 'AI Remediation Playbooks', icon: Terminal },
               { id: 'yara', label: 'AI YARA & Sigma Rules', icon: FileCode },
@@ -265,7 +295,7 @@ export default function SampleDetailPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as TabView)}
-                  className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all ${
+                  className={`flex items-center space-x-2 px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold transition-all ${
                     isActive
                       ? 'bg-cyber-accent text-white shadow-sm'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-cyber-dark'
@@ -277,6 +307,21 @@ export default function SampleDetailPage() {
               );
             })}
           </div>
+
+          {/* Tab Content: Sandbox */}
+          {activeTab === 'sandbox' && (
+            <ProcessTreeSimulator behaviorData={sandboxData} />
+          )}
+
+          {/* Tab Content: MITRE Matrix */}
+          {activeTab === 'mitre' && (
+            <MitreAttackMatrix matrixData={mitreData} />
+          )}
+
+          {/* Tab Content: Hex Inspector */}
+          {activeTab === 'hex' && (
+            <HexDisassemblerInspector hexData={hexData} />
+          )}
 
           {/* Tab 1: Static PE Header Telemetry */}
           {activeTab === 'static' && (
@@ -506,6 +551,15 @@ export default function SampleDetailPage() {
               </div>
             </div>
           )}
+
+          {/* 1-Click Playbook Exporter Modal */}
+          <PlaybookExporterModal
+            isOpen={exportModalOpen}
+            onClose={() => setExportModalOpen(false)}
+            sampleName={sample.filename}
+            remediationData={remediation}
+            yaraSigmaData={yaraSigma}
+          />
         </main>
       </div>
     </div>

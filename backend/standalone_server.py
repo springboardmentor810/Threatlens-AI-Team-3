@@ -23,6 +23,8 @@ from app.services.multimodal_analysis import (
 )
 from app.services.ai_copilot import ai_copilot
 from app.services.threat_intel_stream import threat_intel_stream
+from app.services.behavior_sandbox import generate_sandbox_behavior
+from app.services.mitre_mapper import generate_mitre_attack_matrix
 
 PORT = 8000
 
@@ -60,13 +62,15 @@ class ThreatLensRequestHandler(BaseHTTPRequestHandler):
         # High speed logger without blocking
         sys.stdout.write(f"[{time.strftime('%H:%M:%S')}] {args[0]} {args[1]}\n")
     def _send_json(self, data, status=200):
+        body_bytes = json.dumps(data).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body_bytes)))
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "*")
         self.end_headers()
-        self.wfile.write(json.dumps(data).encode("utf-8"))
+        self.wfile.write(body_bytes)
 
     def _read_body_raw(self) -> bytes:
         try:
@@ -152,6 +156,67 @@ class ThreatLensRequestHandler(BaseHTTPRequestHandler):
 
         if url_path in ["/api/v1/stream/live-telemetry", "/stream/live-telemetry"]:
             return self._send_json(threat_intel_stream.get_realtime_telemetry_events())
+
+        # Lag-Free Real-Time SSE Stream Endpoint
+        if url_path in ["/api/v1/stream/live-telemetry-sse", "/stream/live-telemetry-sse"]:
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream")
+            self.send_header("Cache-Control", "no-cache")
+            self.send_header("Connection", "keep-alive")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            events = threat_intel_stream.get_realtime_telemetry_events()
+            try:
+                for event in events:
+                    payload = f"data: {json.dumps(event)}\n\n"
+                    self.wfile.write(payload.encode("utf-8"))
+                    self.wfile.flush()
+            except Exception:
+                pass
+            return
+
+        if url_path.startswith("/api/v1/analysis/sandbox-behavior/") or url_path.startswith("/analysis/sandbox-behavior/"):
+            sid_str = url_path.split("/")[-1]
+            sid = int(sid_str) if sid_str.isdigit() else 1
+            sample = UPLOADED_SAMPLES_STORE.get(sid, UPLOADED_SAMPLES_STORE.get(1))
+            return self._send_json(generate_sandbox_behavior(
+                sample.get("filename", "LockBit_v3_decryptor_payload.exe"),
+                "Ransomware.LockBit" if "lockbit" in sample.get("filename", "").lower() else "Analyzed Threat Vector",
+                95 if "lockbit" in sample.get("filename", "").lower() else 85,
+                sample.get("file_size_bytes", 524000)
+            ))
+
+        if url_path.startswith("/api/v1/analysis/mitre-attack/") or url_path.startswith("/analysis/mitre-attack/"):
+            sid_str = url_path.split("/")[-1]
+            sid = int(sid_str) if sid_str.isdigit() else 1
+            sample = UPLOADED_SAMPLES_STORE.get(sid, UPLOADED_SAMPLES_STORE.get(1))
+            return self._send_json(generate_mitre_attack_matrix(
+                sample.get("filename", "LockBit_v3_decryptor_payload.exe"),
+                "Ransomware.LockBit" if "lockbit" in sample.get("filename", "").lower() else "Analyzed Threat Vector",
+                95 if "lockbit" in sample.get("filename", "").lower() else 85
+            ))
+
+        if url_path.startswith("/api/v1/analysis/hex-inspector/") or url_path.startswith("/analysis/hex-inspector/"):
+            sid_str = url_path.split("/")[-1]
+            sid = int(sid_str) if sid_str.isdigit() else 1
+            sample = UPLOADED_SAMPLES_STORE.get(sid, UPLOADED_SAMPLES_STORE.get(1))
+            raw_b = sample.get("bytes", b"MZ\x90\x00\x03\x00\x00\x00\x04\x00\x00\x00\xff\xff\x00\x00\xb8\x00\x00\x00")
+            hex_dump = []
+            for i in range(0, min(len(raw_b), 256), 16):
+                chunk = raw_b[i:i+16]
+                hex_str = " ".join(f"{b:02X}" for b in chunk)
+                ascii_str = "".join(chr(b) if 32 <= b <= 126 else "." for b in chunk)
+                hex_dump.append({
+                    "offset": f"0x{i:08X}",
+                    "hex": hex_str.ljust(47),
+                    "ascii": ascii_str
+                })
+            return self._send_json({
+                "filename": sample.get("filename", "sample.exe"),
+                "file_size_bytes": len(raw_b),
+                "md5": sample.get("md5_hash", "e3b0c44298fc1c149afbf4c8996fb924"),
+                "hex_dump": hex_dump
+            })
 
         if url_path in ["/api/v1/integrations/watchlist", "/integrations/watchlist"]:
             return self._send_json(threat_intel_stream.get_watchlist())
@@ -467,7 +532,7 @@ class ThreatLensRequestHandler(BaseHTTPRequestHandler):
 def run_server():
     server_address = ('', PORT)
     httpd = ThreadingHTTPServer(server_address, ThreatLensRequestHandler)
-    print(f"[*] ThreatLens AI Dynamic Standalone Server active on http://127.0.0.1:{PORT} (Multi-Threaded)")
+    print(f"[*] ThreatLens AI Dynamic Standalone Server active on http://127.0.0.1:{PORT} (Multi-Threaded)", flush=True)
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:

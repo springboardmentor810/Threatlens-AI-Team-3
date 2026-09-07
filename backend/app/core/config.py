@@ -23,7 +23,9 @@ class Settings(BaseSettings):
 
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> str:
-        return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+        if os.getenv("USE_POSTGRES", "false").lower() == "true":
+            return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+        return "sqlite:///./test.db"
 
     MONGODB_URL: str = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
     MONGODB_DB_NAME: str = os.getenv("MONGODB_DB_NAME", "threatlens_raw_db")
