@@ -1,6 +1,8 @@
 # ThreatLens AI - Enterprise Threat Classification & Malware Static Analysis Platform
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Live Webpage](https://img.shields.io/badge/Live_Webpage-http%3A%2F%2Flocalhost%3A3000-00d26a.svg)](http://localhost:3000)
+[![REST API](https://img.shields.io/badge/REST_API-http%3A%2F%2Flocalhost%3A8000-38bdf8.svg)](http://localhost:8000)
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109%2B-009688.svg)](https://fastapi.tiangolo.com/)
 [![Next.js: 14](https://img.shields.io/badge/Next.js-14.2%2B-black.svg)](https://nextjs.org/)
@@ -16,6 +18,40 @@ It performs **strictly static analysis and autonomous AI reasoning** (zero execu
 5. **Weaponized Documents & Scripts** (`.pdf`, `.ps1`, `.sh`, `.py`, `.bat`)
 
 It extracts cryptographic hashes, calculates Shannon entropy, evaluates YARA rules, detects LSB audio steganography, maps attack indicators to the **MITRE ATT&CK Matrix**, and features an interactive **ThreatLens AI SOC Copilot** with 1-click remediation scripts (PowerShell, Bash, Snort, SIEM).
+
+---
+
+## 🌐 Live Web Application & Interactive Output Showcase
+
+The ThreatLens AI web application is fully interactive and runs locally at **[http://localhost:3000](http://localhost:3000)** backed by the high-performance async REST API at **[http://localhost:8000](http://localhost:8000)**.
+
+### 🖥️ Live Output Pages & Interactive Views
+
+| Live Page / View | Local URL | Description & Output Capabilities |
+| :--- | :--- | :--- |
+| **Enterprise SOC Dashboard** | **[http://localhost:3000/dashboard](http://localhost:3000/dashboard)** | Real-time telemetry ticker, fleet threat risk meter, malware family distribution, and multi-modal scan feed. |
+| **Interactive Hex & Disassembly** | **[http://localhost:3000/samples/1](http://localhost:3000/samples/1)** | Byte-level hex inspector, PE header parser, entropy gradient chart, and opcode reverse-engineering stream. |
+| **MITRE ATT&CK Matrix** | **[http://localhost:3000/samples/1](http://localhost:3000/samples/1)** | Automatic static-to-adversary technique mapping across Execution, Defense Evasion, and Impact. |
+| **Sandbox Behavior Tree** | **[http://localhost:3000/samples/1](http://localhost:3000/samples/1)** | Safe simulated execution tree showing spawned processes, shadow copy deletion, and outbound C2 queries. |
+| **Autonomous AI SOC Copilot** | **[http://localhost:3000/copilot](http://localhost:3000/copilot)** | Conversational AI analyst, line-by-line decompilation explanation, and 1-click PowerShell/Bash playbooks. |
+| **Multi-Modal Scanner** | **[http://localhost:3000/upload](http://localhost:3000/upload)** | Upload or choose presets for PE Binaries, ElevenLabs Voice Deepfakes, Video Polyglots, and Phishing URLs. |
+| **Real-Time Threat Radar** | **[http://localhost:3000/intel](http://localhost:3000/intel)** | Live threat stream ingestion (OTX, AbuseIPDB, URLhaus, CISA KEV) with automated IOC watchlist matching. |
+| **SOC Incident Queue** | **[http://localhost:3000/alerts](http://localhost:3000/alerts)** | High/Critical threat alert triage queue with 1-click status transitions and SIEM export. |
+
+---
+
+### 📸 Live Dashboard Webpage Preview
+
+![ThreatLens AI Live SOC Dashboard Output](docs/images/threatlens_live_dashboard.svg)
+
+---
+
+### 🔬 Interactive Hex Disassembler & MITRE ATT&CK Output Preview
+
+![ThreatLens AI Hex Disassembler & ATT&CK Matrix](docs/images/threatlens_interactive_disassembler.svg)
+
+> [!TIP]
+> **Live Output Telemetry**: A sample machine-readable export of the live static analysis, PE header inspection, audio deepfake, and MITRE mapping outputs is saved in [`docs/output/sample_live_telemetry_output.json`](docs/output/sample_live_telemetry_output.json).
 
 ---
 

@@ -1,0 +1,78 @@
+{
+  "system_status": {
+    "platform": "ThreatLens AI Enterprise SOC Platform",
+    "version": "2.0.0-realtime",
+    "frontend_url": "http://localhost:3000",
+    "backend_url": "http://localhost:8000",
+    "engines": {
+      "static_pe_parser": "ONLINE",
+      "shannon_entropy_gradient": "ONLINE",
+      "yara_pattern_matcher": "ONLINE",
+      "multimodal_deepfake_detector": "ONLINE",
+      "mitre_attack_mapper": "ONLINE",
+      "neural_soc_copilot": "ONLINE",
+      "realtime_telemetry_ticker": "ONLINE"
+    }
+  },
+  "live_dashboard_overview": {
+    "total_samples": 53,
+    "malware_detected": 38,
+    "active_alerts": 5,
+    "avg_risk_score": 71.2,
+    "multi_modal_breakdown": {
+      "binaries_pe": 32,
+      "audio_deepfakes": 8,
+      "video_polyglots": 6,
+      "phishing_urls": 8
+    }
+  },
+  "sample_static_pe_output": {
+    "id": 1,
+    "filename": "LockBit_v3_decryptor_payload.exe",
+    "file_size_bytes": 524000,
+    "hashes": {
+      "md5": "e3b0c44298fc1c149afbf4c8996fb924",
+      "sha1": "552a419d02a83f9a7b5b2d65c1b1ee525b4b71ca",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "risk_score": 95,
+    "threat_classification": "Ransomware.LockBit",
+    "ml_confidence": 0.96,
+    "shannon_entropy": 7.82,
+    "yara_matches": [
+      "LockBit_Ransomware_Core",
+      "Suspicious_PE_Header",
+      "Crypto_String_Match"
+    ],
+    "pe_sections": [
+      { "name": ".text", "virtual_size": "0x00045000", "raw_size": "0x00045000", "entropy": 6.54, "executable": true },
+      { "name": ".rdata", "virtual_size": "0x00012000", "raw_size": "0x00012000", "entropy": 5.12, "executable": false },
+      { "name": ".data", "virtual_size": "0x00008000", "raw_size": "0x00004000", "entropy": 7.95, "executable": false },
+      { "name": ".rsrc", "virtual_size": "0x00003000", "raw_size": "0x00003000", "entropy": 4.88, "executable": false }
+    ],
+    "imported_apis": [
+      "VirtualAllocEx",
+      "WriteProcessMemory",
+      "CreateRemoteThread",
+      "CryptEncrypt",
+      "OpenProcess"
+    ]
+  },
+  "mitre_attack_mapping": {
+    "tactics": [
+      { "id": "TA0002", "name": "Execution", "techniques": ["T1059.001 - PowerShell", "T1204 - User Execution"] },
+      { "id": "TA0005", "name": "Defense Evasion", "techniques": ["T1027 - Obfuscated Files or Information", "T1055 - Process Injection"] },
+      { "id": "TA0040", "name": "Impact", "techniques": ["T1486 - Data Encrypted for Impact"] }
+    ]
+  },
+  "audio_deepfake_stego_output": {
+    "filename": "executive_urgent_wire_transfer_voice.wav",
+    "format": "WAV 16-bit PCM 44.1kHz",
+    "deepfake_probability": 0.94,
+    "formant_jitter_shimmer_anomaly": 0.88,
+    "acoustic_signature": "ElevenLabs Neural Voice Synthesis Model",
+    "lsb_steganography_detected": true,
+    "stego_payload_length_bytes": 1420,
+    "extracted_hidden_string": "CONNECT 194.26.29.112:8080/stage2.bin"
+  }
+}

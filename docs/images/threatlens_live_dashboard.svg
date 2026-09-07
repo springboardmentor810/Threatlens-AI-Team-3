@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%" style="background:#070b14; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;">
+  <defs>
+    <linearGradient id="cyberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="alertGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#dc2626" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95" />
+    </linearGradient>
+    <linearGradient id="meterGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#ef4444" />
+    </linearGradient>
+  </defs>
+
+  <!-- Window Header Bar -->
+  <rect x="0" y="0" width="1200" height="42" fill="#0b1120" />
+  <circle cx="24" cy="21" r="6" fill="#ef4444" />
+  <circle cx="44" cy="21" r="6" fill="#f59e0b" />
+  <circle cx="64" cy="21" r="6" fill="#10b981" />
+  <rect x="100" y="9" width="460" height="24" rx="6" fill="#1e293b" />
+  <text x="115" y="25" fill="#94a3b8" font-size="12">https://localhost:3000/dashboard — ThreatLens AI SOC Intelligence Platform</text>
+  <rect x="1060" y="9" width="120" height="24" rx="4" fill="#064e3b" />
+  <text x="1075" y="25" fill="#34d399" font-size="11" font-weight="bold">● LIVE WEBPAGE</text>
+
+  <!-- Live Ticker Bar -->
+  <rect x="0" y="42" width="1200" height="36" fill="#030712" stroke="#1f2937" stroke-width="1" />
+  <rect x="16" y="48" width="130" height="24" rx="4" fill="#1e1b4b" stroke="#6366f1" stroke-width="1" />
+  <text x="26" y="64" fill="#a5b4fc" font-size="11" font-weight="bold">⚡ LIVE TELEMETRY</text>
+  <text x="160" y="64" fill="#e2e8f0" font-size="12">CRITICAL: LockBit 3.0 Ransomware payload isolated on endpoint 10.0.4.15 | Entropy: 7.82 | MITRE: T1486 Data Encrypted for Impact</text>
+
+  <!-- Sidebar -->
+  <rect x="0" y="78" width="220" height="602" fill="#0b0f19" stroke="#1f2937" stroke-width="1" />
+  <text x="24" y="115" fill="#38bdf8" font-size="16" font-weight="bold">THREATLENS AI</text>
+  <text x="24" y="132" fill="#64748b" font-size="10" letter-spacing="1.5">ENTERPRISE SOC SUITE</text>
+
+  <rect x="12" y="150" width="196" height="34" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+  <text x="40" y="172" fill="#38bdf8" font-size="13" font-weight="bold">📊 Dashboard</text>
+
+  <text x="40" y="212" fill="#94a3b8" font-size="13">🤖 AI SOC Copilot</text>
+  <text x="40" y="252" fill="#94a3b8" font-size="13">🔬 Multi-Modal Scan</text>
+  <text x="40" y="292" fill="#94a3b8" font-size="13">📁 Malware Samples</text>
+  <text x="40" y="332" fill="#94a3b8" font-size="13">⚡ Sandbox &amp; ATT&amp;CK</text>
+  <text x="40" y="372" fill="#94a3b8" font-size="13">🚨 SOC Alert Queue</text>
+  <text x="40" y="412" fill="#94a3b8" font-size="13">📡 Threat Intel Radar</text>
+  <text x="40" y="452" fill="#94a3b8" font-size="13">📈 Reports &amp; Analytics</text>
+
+  <rect x="12" y="610" width="196" height="50" rx="8" fill="#111827" stroke="#1f2937" stroke-width="1" />
+  <circle cx="36" cy="635" r="14" fill="#0284c7" />
+  <text x="32" y="640" fill="#ffffff" font-size="12" font-weight="bold">SA</text>
+  <text x="60" y="630" fill="#f8fafc" font-size="12" font-weight="bold">Sec Analyst</text>
+  <text x="60" y="646" fill="#10b981" font-size="10">● Admin / Tier-3</text>
+
+  <!-- Main Content Dashboard Area -->
+  <g transform="translate(240, 95)">
+    <!-- Header Title -->
+    <text x="0" y="25" fill="#f8fafc" font-size="22" font-weight="bold">ENTERPRISE THREAT INTELLIGENCE &amp; AI DASHBOARD</text>
+    <text x="0" y="45" fill="#94a3b8" font-size="12">Unified telemetry across PE Binaries, Voice Deepfakes, Video Polyglots, Live Phishing Sites &amp; AI SOC Copilot.</text>
+
+    <!-- 4 Key Stat Cards -->
+    <g transform="translate(0, 65)">
+      <!-- Card 1 -->
+      <rect x="0" y="0" width="220" height="90" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1" />
+      <text x="16" y="24" fill="#94a3b8" font-size="11" font-weight="bold">TOTAL SAMPLES</text>
+      <text x="16" y="60" fill="#38bdf8" font-size="30" font-weight="bold">53</text>
+      <text x="16" y="78" fill="#64748b" font-size="11">Multi-modal repository files</text>
+
+      <!-- Card 2 -->
+      <rect x="235" y="0" width="220" height="90" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1" />
+      <text x="251" y="24" fill="#94a3b8" font-size="11" font-weight="bold">MALWARE DETECTED</text>
+      <text x="251" y="60" fill="#ef4444" font-size="30" font-weight="bold">38</text>
+      <text x="251" y="78" fill="#64748b" font-size="11">High &amp; critical risk ratings</text>
+
+      <!-- Card 3 -->
+      <rect x="470" y="0" width="220" height="90" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1" />
+      <text x="486" y="24" fill="#94a3b8" font-size="11" font-weight="bold">ACTIVE SOC ALERTS</text>
+      <text x="486" y="60" fill="#f59e0b" font-size="30" font-weight="bold">5</text>
+      <text x="486" y="78" fill="#64748b" font-size="11">Threshold score &gt;= 65</text>
+
+      <!-- Card 4 -->
+      <rect x="705" y="0" width="225" height="90" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1" />
+      <text x="721" y="24" fill="#94a3b8" font-size="11" font-weight="bold">AVG RISK SCORE</text>
+      <text x="721" y="60" fill="#ec4899" font-size="30" font-weight="bold">71.2 <tspan font-size="16" fill="#64748b">/ 100</tspan></text>
+      <text x="721" y="78" fill="#64748b" font-size="11">Composite AI &amp; YARA rating</text>
+    </g>
+
+    <!-- Visual Middle Section: Risk Meter & Threat Family Distribution -->
+    <g transform="translate(0, 175)">
+      <!-- Left Chart Card -->
+      <rect x="0" y="0" width="455" height="175" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1" />
+      <text x="16" y="26" fill="#f8fafc" font-size="14" font-weight="bold">Fleet Threat Risk Meter</text>
+      
+      <!-- Gradient Meter Bar -->
+      <rect x="16" y="50" width="423" height="18" rx="9" fill="url(#meterGrad)" />
+      <circle cx="330" cy="59" r="14" fill="#ffffff" stroke="#070b14" stroke-width="3" />
+      <text x="322" y="63" fill="#0f172a" font-size="11" font-weight="bold">71</text>
+      <text x="16" y="85" fill="#10b981" font-size="10">0 LOW</text>
+      <text x="210" y="85" fill="#f59e0b" font-size="10">50 MODERATE</text>
+      <text x="380" y="85" fill="#ef4444" font-size="10">100 CRITICAL</text>
+
+      <rect x="16" y="105" width="423" height="50" rx="6" fill="#030712" />
+      <text x="28" y="125" fill="#38bdf8" font-size="11" font-weight="bold">AI STATIC HEURISTICS INSIGHT:</text>
+      <text x="28" y="142" fill="#cbd5e1" font-size="11">Elevated risk due to polymorphic entropy spikes &amp; deepfake voice cloning activity.</text>
+
+      <!-- Right Chart Card -->
+      <rect x="470" y="0" width="460" height="175" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1" />
+      <text x="486" y="26" fill="#f8fafc" font-size="14" font-weight="bold">Malware Family &amp; Modality Breakdown</text>
+      
+      <!-- Modality Bars -->
+      <text x="486" y="56" fill="#94a3b8" font-size="11">PE Executables</text>
+      <rect x="610" y="46" width="220" height="12" rx="6" fill="#3b82f6" />
+      <text x="840" y="56" fill="#f8fafc" font-size="11" font-weight="bold">60%</text>
+
+      <text x="486" y="82" fill="#94a3b8" font-size="11">Audio Deepfakes</text>
+      <rect x="610" y="72" width="80" height="12" rx="6" fill="#ec4899" />
+      <text x="700" y="82" fill="#f8fafc" font-size="11" font-weight="bold">15%</text>
+
+      <text x="486" y="108" fill="#94a3b8" font-size="11">Video Polyglots</text>
+      <rect x="610" y="98" width="60" height="12" rx="6" fill="#a855f7" />
+      <text x="680" y="108" fill="#f8fafc" font-size="11" font-weight="bold">12%</text>
+
+      <text x="486" y="134" fill="#94a3b8" font-size="11">Phishing Portals</text>
+      <rect x="610" y="124" width="70" height="12" rx="6" fill="#eab308" />
+      <text x="690" y="134" fill="#f8fafc" font-size="11" font-weight="bold">13%</text>
+    </g>
+
+    <!-- Bottom Scans Table -->
+    <g transform="translate(0, 365)">
+      <rect x="0" y="0" width="930" height="195" rx="8" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1" />
+      <text x="16" y="24" fill="#f8fafc" font-size="14" font-weight="bold">Recent Threat Detections &amp; Live Scans</text>
+
+      <!-- Table Row 1 -->
+      <rect x="16" y="42" width="898" height="42" rx="4" fill="#030712" stroke="#1e293b" stroke-width="1" />
+      <text x="32" y="67" fill="#38bdf8" font-size="12" font-weight="bold">LockBit_v3_decryptor_payload.exe</text>
+      <rect x="360" y="52" width="130" height="22" rx="4" fill="#450a0a" stroke="#ef4444" stroke-width="1" />
+      <text x="370" y="67" fill="#f87171" font-size="10" font-weight="bold">Ransomware.LockBit</text>
+      <text x="520" y="67" fill="#e2e8f0" font-size="11">Entropy: 7.82</text>
+      <rect x="660" y="52" width="70" height="22" rx="4" fill="#dc2626" />
+      <text x="670" y="67" fill="#ffffff" font-size="11" font-weight="bold">95 / 100</text>
+      <rect x="760" y="52" width="130" height="22" rx="4" fill="#1e293b" />
+      <text x="770" y="67" fill="#38bdf8" font-size="11">Inspect Hex &amp; ATT&amp;CK →</text>
+
+      <!-- Table Row 2 -->
+      <rect x="16" y="92" width="898" height="42" rx="4" fill="#030712" stroke="#1e293b" stroke-width="1" />
+      <text x="32" y="117" fill="#ec4899" font-size="12" font-weight="bold">executive_urgent_wire_transfer.wav</text>
+      <rect x="360" y="102" width="130" height="22" rx="4" fill="#500724" stroke="#f43f5e" stroke-width="1" />
+      <text x="370" y="117" fill="#fb7185" font-size="10" font-weight="bold">Audio.Deepfake.ElevenLabs</text>
+      <text x="520" y="117" fill="#e2e8f0" font-size="11">Stego: LSB Detected</text>
+      <rect x="660" y="102" width="70" height="22" rx="4" fill="#f43f5e" />
+      <text x="670" y="117" fill="#ffffff" font-size="11" font-weight="bold">92 / 100</text>
+      <rect x="760" y="102" width="130" height="22" rx="4" fill="#1e293b" />
+      <text x="770" y="117" fill="#ec4899" font-size="11">Audio Spectrum →</text>
+
+      <!-- Table Row 3 -->
+      <rect x="16" y="142" width="898" height="42" rx="4" fill="#030712" stroke="#1e293b" stroke-width="1" />
+      <text x="32" y="167" fill="#eab308" font-size="12" font-weight="bold">https://secure-login-microsoft365.online</text>
+      <rect x="360" y="152" width="130" height="22" rx="4" fill="#422006" stroke="#eab308" stroke-width="1" />
+      <text x="370" y="167" fill="#fde047" font-size="10" font-weight="bold">Phishing.CredentialHarvester</text>
+      <text x="520" y="167" fill="#e2e8f0" font-size="11">DOM Form Heuristics</text>
+      <rect x="660" y="152" width="70" height="22" rx="4" fill="#d97706" />
+      <text x="670" y="167" fill="#ffffff" font-size="11" font-weight="bold">88 / 100</text>
+      <rect x="760" y="152" width="130" height="22" rx="4" fill="#1e293b" />
+      <text x="770" y="167" fill="#eab308" font-size="11">DOM Telemetry →</text>
+    </g>
+  </g>
+</svg>
