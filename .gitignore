@@ -1,0 +1,12 @@
+# Python virtual environments
+venv/
+.venv/
+ai_model/venv/Threatlens-AI-Team-3/
+.venv/
+Threatlens-AI-Team-3/
+.venv/
+__pycache__/
+*.pyc
+*.db
+ai_model/dataset/
+ai_model/processed/
