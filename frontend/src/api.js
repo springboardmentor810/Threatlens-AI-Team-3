@@ -82,6 +82,32 @@ export async function loginUser(username, password) {
   return data;
 }
 
+/* =========================
+   USER REGISTRATION
+   ========================= */
+
+export async function registerUser({
+  username,
+  email,
+  password,
+  role = "Security Analyst",
+  full_name = "",
+}) {
+  const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+    method: "POST",
+    headers: buildHeaders(true),
+    body: JSON.stringify({
+      username,
+      email,
+      password,
+      role,
+      full_name,
+    }),
+  });
+
+  return parseResponse(response);
+}
+
 export async function getCurrentUser() {
   const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
     method: "GET",
