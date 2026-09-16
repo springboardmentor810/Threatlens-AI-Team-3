@@ -751,3 +751,30 @@ body.dark-mode,body[data-theme=dark],.dark-mode,[data-theme=dark]{--page-bg:#071
     width:100%;
   }
 }
+
+/* Login/Register action buttons — match the Sign In button */
+.login-card button:not(.primary-button):not(.show-password){
+  width:100%;
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:0 18px;
+  border-radius:9px;
+  background:linear-gradient(135deg,var(--blue-800),var(--blue-600));
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+  box-shadow:0 8px 18px rgba(21,101,192,.2);
+}
+
+.login-card button:not(.primary-button):not(.show-password):hover{
+  transform:translateY(-1px);
+}
+
+.login-card button:not(.primary-button):not(.show-password):disabled{
+  opacity:.55;
+  transform:none;
+  box-shadow:none;
+}
