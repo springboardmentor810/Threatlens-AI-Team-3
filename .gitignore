@@ -47,3 +47,5 @@ yarn-error.log*
 scratch/
 tmp/
 temp/
+uploads/
+backend/uploads/
